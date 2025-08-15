@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: <your_ecr_repo_uri>/frontend:latest # Replace with your ECR repo URI
+        image: 730335183376.dkr.ecr.ap-south-1.amazonaws.com/three-tier-app/frontend:latest # Replace with your ECR repo URI
         ports:
         - containerPort: 80
 ---

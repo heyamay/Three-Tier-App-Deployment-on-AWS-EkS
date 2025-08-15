@@ -7,4 +7,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi # You can adjust the size
+      storage: 5Gi
+  storageClassName: ebs-csi-gp2
