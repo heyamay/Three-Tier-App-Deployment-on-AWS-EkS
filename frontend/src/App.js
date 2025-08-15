@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+// Use the ingress URL or environment variable
+const API_URL = process.env.REACT_APP_API_URL || window.location.origin;
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -11,6 +12,8 @@ function App() {
   useEffect(() => {
     axios.get(`${API_URL}/tasks`).then(response => {
       setTasks(response.data);
+    }).catch(error => {
+      console.error('Error fetching tasks:', error);
     });
   }, []);
 
@@ -19,12 +22,16 @@ function App() {
       setTasks([...tasks, response.data]);
       setTitle('');
       setDescription('');
+    }).catch(error => {
+      console.error('Error creating task:', error);
     });
   };
 
   const deleteTask = id => {
     axios.delete(`${API_URL}/tasks/${id}`).then(() => {
       setTasks(tasks.filter(task => task.id !== id));
+    }).catch(error => {
+      console.error('Error deleting task:', error);
     });
   };
 
